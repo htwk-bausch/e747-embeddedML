@@ -1,2 +1,3 @@
-# e747-embeddedML
+# Embedded Machine Learning (E747)
+
 Projektdateien für das Modul E747: Embedded Machine Learning
