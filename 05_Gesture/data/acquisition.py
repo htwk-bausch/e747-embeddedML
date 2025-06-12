@@ -1,12 +1,12 @@
 import serial
 import sys
 
-def acquisition(file, numSamples=104, numDatasets=1):
+def acquisition(file, device, numSamples=104, numDatasets=1):
 
   datasets = 0
   samples  = 0
 
-  ser = serial.Serial('/dev/tty.usbmodem2102', 115200, timeout=10)
+  ser = serial.Serial(device, 115200, timeout=10)
 
   data = 'aX,aY,aZ,gX,gY,gZ\r\n'
 
@@ -33,16 +33,17 @@ def acquisition(file, numSamples=104, numDatasets=1):
 
 if __name__ == '__main__':
 
-  if (len(sys.argv) > 3):
+  if (len(sys.argv) > 4):
     fileName    = str(sys.argv[1])
     numSamples  = int(sys.argv[2])
     numDatasets = int(sys.argv[3])
+    device      = str(sys.argv[4])
 
     with open(fileName, "w") as f:
       
       #f.write("aX,aY,aZ,gX,gY,gZ\r\n")
-      acquisition(f, numSamples, numDatasets)
+      acquisition(f, device, numSamples, numDatasets)
       f.close()
   
   else:
-    print('\r\nUsage: %s <FILENAME> <NUM_SAMPLES> <NUM_DATASETS>' % sys.argv[0])
+    print('\r\nUsage: %s <FILENAME> <NUM_SAMPLES> <NUM_DATASETS> <DEVICE>' % sys.argv[0])
