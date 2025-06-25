@@ -258,6 +258,7 @@ int main(void)
       if (nbatch != 1) {
         printf("Error: could not run inference\r\n");
       } else {
+        // copy inference data
     	  for (i=0; i<AI_NETWORK_OUT_1_SIZE; i++) {
           aiOutVal[i] = ((float*)out_data)[i];
     	  }
@@ -265,7 +266,7 @@ int main(void)
 
       arm_max_f32(aiOutVal, AI_NETWORK_OUT_1_SIZE, &maxValue, &maxIndex);
 
-      // output status only changed status
+      // output status only when changed
       if (currFanStatus != maxIndex) {
         printf("Current fan status: %s\r\n", fanStatus[maxIndex]);
     	  currFanStatus = maxIndex;
