@@ -258,21 +258,17 @@ int main(void)
       if (nbatch != 1) {
         printf("Error: could not run inference\r\n");
       } else {
-    	for (i=0; i<AI_NETWORK_OUT_1_SIZE; i++) {
+    	  for (i=0; i<AI_NETWORK_OUT_1_SIZE; i++) {
           aiOutVal[i] = ((float*)out_data)[i];
-    	}
+    	  }
       }
-
-      /*for (i=0; i<AI_NETWORK_OUT_1_SIZE; i++) {
-        printf("Class %d: %.3f\r\n", i, aiOutVal[i]);
-      }*/
 
       arm_max_f32(aiOutVal, AI_NETWORK_OUT_1_SIZE, &maxValue, &maxIndex);
 
       // output status only changed status
       if (currFanStatus != maxIndex) {
         printf("Current fan status: %s\r\n", fanStatus[maxIndex]);
-    	currFanStatus = maxIndex;
+    	  currFanStatus = maxIndex;
       }
 
       // clear sample counter and start all over again
